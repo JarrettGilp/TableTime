@@ -1,6 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Reservation from "./pages/Reservation";
-import AdminLogin from "./pages/AdminLogin";
 import ManageReservation from "./pages/ManageReservation";
 
 export default function App() {
@@ -43,9 +42,6 @@ export default function App() {
               <Link to="/reservation">
                 <button style={buttonStyle}>Make a Reservation</button>
               </Link>
-              <Link to ="/admin">
-              <button style={buttonStyle}>Login as Admin</button>
-              </Link>
 
             <Link to="/manage_reservations">
               <button style={buttonStyle}>Manage Reservation</button>
@@ -57,7 +53,6 @@ export default function App() {
 
       
       <Route path="/reservation" element={<Reservation />} />
-      <Route path="/admin" element={<AdminLogin />} />
       <Route path="/manage_reservations" element={<ManageReservation />} />
       </Routes>
       

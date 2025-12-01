@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "table-time",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,9 +7,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "backend": "node backend/index.js",
+    "start:all": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run dev\""
   },
   "dependencies": {
+    "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",

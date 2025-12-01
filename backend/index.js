@@ -28,14 +28,22 @@ app.post("/api/reservations", async (req, res) => {
 
 app.put("/api/reservations/:id", async (req, res) => {
   const { id } = req.params;
-  const { status } = req.body; // e.g., "Canceled" or "Confirmed"
+  const { firstName, lastName, restaurantName, tableID, date, time, partySize, status } = req.body;
+
   try {
     const result = await pool.query(
       `UPDATE Reservations
-       SET rv_status = $1
-       WHERE rv_id = $2
+       SET rv_customerfirstname = $1,
+           rv_customerlastname = $2,
+           rv_restaurantname = $3,
+           rv_tableid = $4,
+           rv_date = $5,
+           rv_time = $6,
+           rv_partysize = $7,
+           rv_status = $8
+       WHERE rv_id = $9
        RETURNING *;`,
-      [status, id]
+      [firstName, lastName, restaurantName, tableID, date, time, partySize, status, id]
     );
     res.json(result.rows[0]);
   } catch (err) {
@@ -43,6 +51,7 @@ app.put("/api/reservations/:id", async (req, res) => {
     res.status(500).json({ error: "Database error" });
   }
 });
+
 
 app.delete("/api/reservations/:id", async (req, res) => {
   const { id } = req.params;
